@@ -1,3 +1,5 @@
+[![build status](https://secure.travis-ci.org/doug-martin/grunt-link.png)](http://travis-ci.org/doug-martin/grunt-link)
+
 # grunt-link
 
 Grunt task to handle the linking of local dependencies.
