@@ -87,25 +87,6 @@ To prevent the warning for a single module you can add `!` to the beginning of t
 
 **`ignoreCyclic` default `false`**
 
-By default the `link` task will look for cyclic dependencies among your local modules producing an error if it finds one.
-
-To prevent the warning for a single module you can add `!` to the beginning of the dependency name in the `linkDependencies` array.
-
-```javascript
-
-{
-    "name": "my-module",
-    "version" : "0.0.1",
-    "linkDependencies": [
-        "!module-a", 
-        "module-b", 
-        "module-c"
-    ]
-}
-
-```
-
-
 To prevent this default behavior you can add the following to your `grunt.js` file.
 
 ```javascript
