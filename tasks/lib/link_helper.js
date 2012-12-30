@@ -51,11 +51,11 @@ module.exports = function (baseDir) {
 
 
     function gatherPackages() {
-        var packages = {};
-        var files = fs.readdirSync(baseDir);
+        var packages = {},
+            files = fs.readdirSync(baseDir);
         files.forEach(function (file) {
-            var filePath = path.resolve(baseDir, file);
-            var stat = fs.statSync(filePath);
+            var filePath = path.resolve(baseDir, file),
+                stat = fs.statSync(filePath);
             if (stat.isDirectory()) {
                 try {
                     packages[filePath] = getPackage(filePath);
@@ -68,8 +68,8 @@ module.exports = function (baseDir) {
     }
 
     function findLinks() {
-        var packages = gatherPackages();
-        var ret = {};
+        var packages = gatherPackages(),
+            ret = {};
         Object.keys(packages).forEach(function (location) {
             ret[location] = packages[location].linkDependencies || [];
         });
@@ -84,9 +84,9 @@ module.exports = function (baseDir) {
                 keys.splice(keys.indexOf(r), 1);
             }
             keys.forEach(function (k) {
-                var arr = packageLinks[k], isArr = Array.isArray(arr);
+                var arr = packageLinks[k], isArr = Array.isArray(arr), index;
                 if (isArr) {
-                    var index = arr.indexOf(packageName);
+                    index = arr.indexOf(packageName);
                     if (index !== -1) {
                         arr.splice(index, 1);
                     }
@@ -114,12 +114,12 @@ module.exports = function (baseDir) {
     }
 
     function sortByDeps(packageLinks) {
-        var ret = [], resolved = [], keys = Object.keys(packageLinks), normalizedLinks = {}, postLinks = [], cyclic = [], foundEmpties = true;
+        var ret = [], resolved = [], keys = Object.keys(packageLinks), normalizedLinks = {}, postLinks = [], cyclic = [], foundEmpties;
         keys.forEach(function (key) {
-            var links = packageLinks[key], normalizedName = normalizeName(key);
+            var links = packageLinks[key], normalizedName = normalizeName(key), forced;
             packageLinks[key] = removeForced(links);
             normalizedLinks[normalizedName] = removeForced(links);
-            var forced = findForced(links);
+            forced = findForced(links);
             if (forced.length) {
                 postLinks.push([normalizedName, forced, false]);
             }
@@ -157,7 +157,7 @@ module.exports = function (baseDir) {
         findLinks: findLinks,
         sortByDeps: sortByDeps,
         findSortAndNormalizeDeps: findSortAndNormalizeDeps
-    }
+    };
 
 
 };
