@@ -6,14 +6,12 @@ module.exports = function (grunt) {
         nodeunit: {
             all: ['test/link_test.js']
         },
-        lint: {
-            files: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
-        },
         watch: {
             files: '<config:lint.files>',
             tasks: 'default'
         },
         jshint: {
+            all: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js'],
             options: {
                 curly: true,
                 eqeqeq: true,
@@ -38,9 +36,10 @@ module.exports = function (grunt) {
     // Load local tasks.
     grunt.loadTasks('tasks');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Default task.
-    grunt.registerTask('test', 'link nodeunit:all');
-    grunt.registerTask('default', 'lint test');
+    grunt.registerTask('test', ['link','nodeunit:all']);
+    grunt.registerTask('default', ['jshint','test']);
 
 };

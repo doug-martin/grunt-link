@@ -16,7 +16,7 @@ exports.link = {
         test.ok(isLink("test/test-project/moduleB/node_modules/module-a"));
         test.ok(isLink("test/test-project/moduleC/node_modules/module-a"));
         test.ok(isLink("test/test-project/moduleC/node_modules/module-b"));
-        test.equal(grunt.file.expandDirs("test/test-project/moduleA/node_modules").length, 0);
+        test.equal(grunt.file.expand("test/test-project/moduleA/node_modules").length, 0);
         test.done();
     }
 };
