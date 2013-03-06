@@ -32,6 +32,7 @@ module.exports = function (grunt) {
             process.chdir(cwd);
             if (err) {
                 grunt.log.error("Error linking pacakages");
+                grunt.log.error(err.stack);
                 done(false);
             } else {
                 done();
