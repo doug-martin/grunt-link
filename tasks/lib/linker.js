@@ -39,7 +39,7 @@ module.exports = function (grunt, options) {
         cyclic.forEach(function (cyc) {
             errors.push(util.format("%s => %s", cyc.pkg, cyc.deps.join(" ")));
         });
-        return new comb.Promise().error(new Error(errors.join("\n")));
+        return new comb.Promise().errback(new Error(errors.join("\n")));
     }
 
     log.writeln("Linking packages");
