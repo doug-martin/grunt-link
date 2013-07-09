@@ -62,10 +62,9 @@ module.exports = function (grunt, options) {
                 cmds.push("npm link");
             }
             if (install) {
-
-                return rimraf(path.resolve(loc, "./node_modules")).chain(function () {
+                return options.clean ? rimraf(path.resolve(loc, "./node_modules")).chain(function () {
                     return exec(cmds);
-                });
+                }) : exec(cmds);
             } else {
                 return exec(cmds);
             }

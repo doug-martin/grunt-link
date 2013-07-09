@@ -1,48 +1,48 @@
 {
-  "name": "grunt-link",
-  "description": "Grunt task to handle the linking of local dependencies",
-  "version": "0.1.1",
-  "homepage": "http://doug-martin.github.com/grunt-link",
-  "author": {
-    "name": "Doug Martin",
-    "email": "doug@dougamartin.com",
-    "url": "http://blog.dougamartin.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "doug-martin/grunt-link.git"
-  },
-  "bugs": {
-    "url": ""
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://doug-martin.github.com/grunt-link/blob/master/LICENSE-MIT"
+    "name": "grunt-link",
+    "description": "Grunt task to handle the linking of local dependencies",
+    "version": "0.1.2",
+    "homepage": "http://doug-martin.github.com/grunt-link",
+    "author": {
+        "name": "Doug Martin",
+        "email": "doug@dougamartin.com",
+        "url": "http://blog.dougamartin.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "doug-martin/grunt-link.git"
+    },
+    "bugs": {
+        "url": ""
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://doug-martin.github.com/grunt-link/blob/master/LICENSE-MIT"
+        }
+    ],
+    "main": "Gruntfile.js",
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "test": "grunt test"
+    },
+    "peerDependencies": {
+        "grunt": "~0.4.0"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.0",
+        "grunt-contrib-nodeunit": "~0.1.2",
+        "grunt-contrib-jshint": "~0.2.0"
+    },
+    "keywords": [
+        "gruntplugin",
+        "npm",
+        "link"
+    ],
+    "dependencies": {
+        "comb": "~0.2.1",
+        "rimraf": "~2.1.1"
     }
-  ],
-  "main": "Gruntfile.js",
-  "engines": {
-    "node": "*"
-  },
-  "scripts": {
-    "test": "grunt test"
-  },
-  "peerDependencies": {
-    "grunt": "~0.4.0"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-contrib-nodeunit": "~0.1.2",
-    "grunt-contrib-jshint": "~0.2.0"
-  },
-  "keywords": [
-    "gruntplugin",
-    "npm",
-    "link"
-  ],
-  "dependencies": {
-    "comb": "~0.2.1",
-    "rimraf": "~2.1.1"
-  }
 }

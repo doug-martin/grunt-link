@@ -125,6 +125,18 @@ grunt.initConfig({
 });
 ```
 
+**`clean` default true**
+
+`grunt-link` will by default remove the node_modules directory to prevent this set `clean` to false.
+
+```javascript
+grunt.initConfig({
+    link : {
+        clean : false
+    }
+});
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 

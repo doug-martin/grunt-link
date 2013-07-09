@@ -20,7 +20,7 @@ module.exports = function (grunt) {
     // ==========================================================================
 
     grunt.registerTask('link', 'Your task description goes here.', function () {
-        var options = grunt.util._.extend({ignoreCyclic: false, dir: process.cwd(), install: true}, grunt.config("link")),
+        var options = grunt.util._.extend({ignoreCyclic: false, dir: process.cwd(), install: true, clean: true}, grunt.config("link")),
             done,
             cwd;
         if (options.dir) {
