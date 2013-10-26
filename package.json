@@ -10,10 +10,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "doug-martin/grunt-link.git"
+        "url": "https://github.com/doug-martin/grunt-link.git"
     },
     "bugs": {
-        "url": ""
+        "url": "http://doug-martin.github.com/grunt-link/issues"
     },
     "licenses": [
         {
