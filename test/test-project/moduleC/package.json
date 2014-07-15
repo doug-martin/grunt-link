@@ -1,5 +1,5 @@
 {
-    "name": "module-b",
+    "name": "module-c",
     "version": "0.0.1",
     "linkDependencies": ["module-a", "module-b"]
 }
