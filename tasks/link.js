@@ -10,7 +10,8 @@
 
 module.exports = function (grunt) {
     var linker = require("./lib/linker.js"),
-        path = require("path");
+        path = require("path"),
+        npm = require("npm");
 
     // Please see the grunt documentation for more information regarding task and
     // helper creation: https://github.com/gruntjs/grunt/blob/master/docs/toc.md
@@ -19,7 +20,7 @@ module.exports = function (grunt) {
     // TASKS
     // ==========================================================================
 
-    grunt.registerTask('link', 'Your task description goes here.', function () {
+    grunt.registerTask('link', 'Symlink local node_module dependencies.', function () {
         var options = grunt.util._.extend({ignoreCyclic: false, dir: process.cwd(), install: true, clean: true}, grunt.config("link")),
             done,
             cwd;
@@ -28,15 +29,17 @@ module.exports = function (grunt) {
         }
         done = this.async();
         cwd = process.cwd();
-        linker(grunt, options).classic(function (err) {
-            process.chdir(cwd);
-            if (err) {
-                grunt.log.error("Error linking pacakages");
-                grunt.log.error(err.stack);
-                done(false);
-            } else {
-                done();
-            }
+        npm.load(function () {
+            linker(grunt, npm, options).classic(function (err) {
+                process.chdir(cwd);
+                if (err) {
+                    grunt.log.error("Error linking packages");
+                    grunt.log.error(err.stack);
+                    done(false);
+                } else {
+                    done();
+                }
+            });
         });
     });
 };

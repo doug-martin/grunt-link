@@ -142,6 +142,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+2014-07-16 v0.2.0  
+- Using symlinks instead of `npm link` to improve performance.
+- Improved logging.
+
 2012-12-30 v0.0.1 Initial release.
 
 ## License
