@@ -1,8 +1,8 @@
 {
   "name": "grunt-link",
   "description": "Grunt task to handle the linking of local dependencies",
-  "version": "0.2.0",
-  "homepage": "http://doug-martin.github.com/grunt-link",
+  "version": "0.2.1",
+  "homepage": "https://github.com/doug-martin/grunt-link.git",
   "author": {
     "name": "Doug Martin",
     "email": "doug@dougamartin.com",
