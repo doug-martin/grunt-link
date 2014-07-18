@@ -142,6 +142,14 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+2014-07-16 v0.2.2
+- Changed to use `npm link` when initially linking modules
+
+
+2014-07-16 v0.2.1 
+- Updated `package.json` for correct repo
+
+
 2014-07-16 v0.2.0  
 - Using symlinks instead of `npm link` to improve performance.
 - Improved logging.

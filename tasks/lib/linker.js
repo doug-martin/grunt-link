@@ -26,7 +26,7 @@ module.exports = function (grunt, npm, options) {
         return comb.async.array(cmds).forEach(function (cmd) {
             if (cmd) {
                 log.debug(util.format("Executing %s %s", cmd.cmd, cmd.args.join(" ")));
-                var child = execP(cmd.cmd, cmd.args, { stdio: "inherit" }), 
+                var child = execP(cmd.cmd, cmd.args, { stdio: "inherit" }),
                     ret = new comb.Promise();
 
                 child.on("close", function (code) {
@@ -42,7 +42,7 @@ module.exports = function (grunt, npm, options) {
         }, 1);
     }
 
-    function createModulesDir (dir, deps) {
+    function createModulesDir(dir, deps) {
         var statP = new comb.Promise();
         if (deps.length < 1) {
             log.debug("No linked dependencies needed");
@@ -60,7 +60,7 @@ module.exports = function (grunt, npm, options) {
     }
 
     function chdir(location) {
-        var newLoc = path.resolve(cwd, normalizeName(location))
+        var newLoc = path.resolve(cwd, normalizeName(location));
         log.debug("Changing directory to " + newLoc);
         process.chdir(newLoc);
     }
@@ -82,7 +82,7 @@ module.exports = function (grunt, npm, options) {
                 }
             }
             if (options.clean && install) {
-                log.debug(util.format("Executing rimraf %s", loc+"/node_modules"));
+                log.debug(util.format("Executing rimraf %s", loc + "/node_modules"));
                 cleanPromise = rimraf(path.resolve(loc, "./node_modules"));
             } else {
                 cleanPromise = comb.async.array(removeDirs).forEach(function (dir) {
@@ -123,8 +123,9 @@ module.exports = function (grunt, npm, options) {
             if (i === 0) {
                 log.subhead("Linking modules");
             }
+            chdir(pkg[0]);
             if (isBoolean(pkg[2]) ? pkg[2] : true) {
-                return exec({ cmd: "ln", args: ["-s", getPackageName(pkg[0]), npm.globalDir]});
+                return exec({ cmd: "npm", args: ["link"]});
             }
         }, 1)
         .forEach(function (pkg, i) {
@@ -163,5 +164,5 @@ module.exports = function (grunt, npm, options) {
                 }
                 return exec(cmds);
             });
-        },1);
+        }, 1);
 };
