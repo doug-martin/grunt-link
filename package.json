@@ -1,13 +1,23 @@
 {
     "name": "grunt-link",
     "description": "Grunt task to handle the linking of local dependencies",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "homepage": "http://doug-martin.github.com/grunt-link",
     "author": {
         "name": "Doug Martin",
         "email": "doug@dougamartin.com",
         "url": "http://blog.dougamartin.com"
     },
+    "contributors": [
+        {
+            "name": "Nick Nisi",
+            "url": "http://nicknisi.com"
+        },{
+            "name": "Russell Madsen",
+            "email": "russell@madsendev.com",
+            "url": "http://madsendev.com"
+        }
+    ],
     "repository": {
         "type": "git",
         "url": "doug-martin/grunt-link.git"
