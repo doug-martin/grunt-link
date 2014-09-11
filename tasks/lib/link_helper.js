@@ -1,6 +1,7 @@
 "use strict";
 
 var path = require("path"),
+    comb = require("comb"),
     fs = require("fs");
 
 module.exports = function (baseDir) {
@@ -71,7 +72,16 @@ module.exports = function (baseDir) {
         var packages = gatherPackages(),
             ret = {};
         Object.keys(packages).forEach(function (location) {
-            ret[location] = packages[location].linkDependencies || [];
+
+            var linkDependencies = packages[location].linkDependencies || [];
+            var uniqueDeps = comb(linkDependencies).unique();
+
+            if (uniqueDeps.length < linkDependencies.length) {
+                console.warn("Duplicate link dependencies in package ", location);
+            }
+
+            ret[location] = uniqueDeps;
+
         });
         return ret;
     }
