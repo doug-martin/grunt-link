@@ -1,7 +1,7 @@
 {
   "name": "grunt-link",
   "description": "Grunt task to handle the linking of local dependencies",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/doug-martin/grunt-link.git",
   "author": {
     "name": "Doug Martin",
@@ -53,7 +53,7 @@
     "link"
   ],
   "dependencies": {
-    "comb": "~0.2.1",
+    "comb": "~0.4.0",
     "rimraf": "~2.1.1",
     "npm": "^1.4.21"
   }
