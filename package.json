@@ -1,7 +1,7 @@
 {
   "name": "grunt-link",
   "description": "Grunt task to handle the linking of local dependencies",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "homepage": "https://github.com/doug-martin/grunt-link.git",
   "author": {
     "name": "Doug Martin",
@@ -17,6 +17,10 @@
       "name": "Russell Madsen",
       "email": "russell@madsendev.com",
       "url": "http://madsendev.com"
+    },
+    {
+      "name": "Aaron Nordyke",
+      "email": "aaron.nordyke@gmail.com"
     }
   ],
   "repository": {

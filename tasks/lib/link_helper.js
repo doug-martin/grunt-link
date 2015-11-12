@@ -40,8 +40,8 @@ module.exports = function (baseDir) {
         return arr.filter(function (key) {
             return key.match(/^!/);
         }).map(function (key) {
-                return key.replace(/^!/, "");
-            });
+            return key.replace(/^!/, "");
+        });
     }
 
 

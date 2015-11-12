@@ -125,6 +125,31 @@ grunt.initConfig({
 });
 ```
 
+**`useNpmCache` default true**
+
+`grunt-link` will run `npm-cache install npm` if available, rather than `npm install`. `npm-cache` is a module for caching installations from npm, bower, and composer. For more information, visit https://github.com/swarajban/npm-cache.
+
+```javascript
+grunt.initConfig({
+    link : {
+        useNpmCache : false
+    }
+});
+```
+
+**`cacheDirectory` default empty**
+
+`cacheDirectory` overrides `npm-cache`'s default cache directory. For more information, visit https://github.com/swarajban/npm-cache.
+
+```javascript
+grunt.initConfig({
+    link : {
+        useNpmCache : true,
+        cacheDirectory: '~/cache'
+    }
+});
+```
+
 **`clean` default true**
 
 `grunt-link` will by default remove the node_modules directory to prevent this set `clean` to false.
@@ -141,6 +166,9 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
 ## Release History
+
+2015-11-12 v0.3.0
+- Added option to use `npm-cache install npm` when installing modules
 
 2014-07-16 v0.2.2
 - Changed to use `npm link` when initially linking modules
