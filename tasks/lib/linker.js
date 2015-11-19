@@ -19,24 +19,34 @@ module.exports = function (grunt, npm, options) {
         errors = [],
         cwd = process.cwd();
 
-    function exec(cmds) {
+    function exec(cmds, options) {
+        options = comb.merge({stdio: "inherit"}, options);
         if (!comb.isArray(cmds)) {
             cmds = [cmds];
         }
         return comb.async.array(cmds).forEach(function (cmd) {
             if (cmd) {
                 log.debug(util.format("Executing %s %s", cmd.cmd, cmd.args.join(" ")));
-                var child = execP(cmd.cmd, cmd.args, { stdio: "inherit" }),
-                    ret = new comb.Promise();
+                var child = execP(cmd.cmd, cmd.args, options),
+                    ret = new comb.Promise(),
+                    resolved = false;
 
                 child.on("close", function (code) {
-                    if (code !== 0) {
-                        ret.errback(new Error("ps process exited with code " + code));
-                    } else {
-                        ret.callback();
+                    if (!resolved) {
+                        resolved = true;
+                        if (code !== 0) {
+                            ret.errback(new Error("ps process exited with code " + code));
+                        } else {
+                            ret.callback();
+                        }
                     }
                 });
-                child.on("error", ret.errback);
+                child.on("error", function(error){
+                    if (!resolved) {
+                        resolved = true;
+                        ret.errback(error);
+                    }
+                });
                 return ret;
             }
         }, 1);
@@ -63,6 +73,15 @@ module.exports = function (grunt, npm, options) {
         var newLoc = path.resolve(cwd, normalizeName(location));
         log.debug("Changing directory to " + newLoc);
         process.chdir(newLoc);
+    }
+
+    function getNpmCacheArgs(options) {
+        var args = ["install"];
+        if(options.cacheDirectory) {
+            args = args.concat(["--cacheDirectory", options.cacheDirectory]);
+        }
+        args = args.concat(["npm"]);
+        return args;
     }
 
     function cleanUpOldLinks(pkg) {
@@ -119,16 +138,6 @@ module.exports = function (grunt, npm, options) {
             return cleanUpOldLinks(pkg);
         }, 1)
         .forEach(function (pkg, i) {
-            // create links
-            if (i === 0) {
-                log.subhead("Linking modules");
-            }
-            chdir(pkg[0]);
-            if (isBoolean(pkg[2]) ? pkg[2] : true) {
-                return exec({ cmd: "npm", args: ["link"]});
-            }
-        }, 1)
-        .forEach(function (pkg, i) {
             //install pkg
             if (i === 0) {
                 log.subhead("Installing linked modules");
@@ -136,7 +145,25 @@ module.exports = function (grunt, npm, options) {
             if (isBoolean(pkg[2]) ? pkg[2] : true && options.install) {
                 log.debug(util.format("==== %s ====", getPackageName(pkg[0])));
                 chdir(pkg[0]);
-                return exec({cmd: "npm", args: ["install"]});
+                if(options.useNpmCache) {
+                    return exec({cmd: "npm-cache", args: ["--version"]}, { stdio: "ignore"}).chain(function(){
+                        return exec({cmd: "npm-cache", args: getNpmCacheArgs(options)});
+                    }, function(){
+                        return exec({cmd: "npm", args: ["install"]});
+                    });
+                } else {
+                    return exec({cmd: "npm", args: ["install"]});
+                }
+            }
+        }, 1)
+        .forEach(function (pkg, i) {
+            // create links
+            if (i === 0) {
+                log.subhead("Linking modules");
+            }
+            chdir(pkg[0]);
+            if (isBoolean(pkg[2]) ? pkg[2] : true) {
+                return exec({ cmd: "npm", args: ["link"]});
             }
         }, 1)
         .forEach(function (pkg, i) {

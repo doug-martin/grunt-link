@@ -21,7 +21,7 @@ module.exports = function (grunt) {
     // ==========================================================================
 
     grunt.registerTask('link', 'Symlink local node_module dependencies.', function () {
-        var options = grunt.util._.extend({ignoreCyclic: false, dir: process.cwd(), install: true, clean: true}, grunt.config("link")),
+        var options = grunt.util._.extend({ignoreCyclic: false, dir: process.cwd(), install: true, clean: true, useNpmCache: true}, grunt.config("link")),
             done,
             cwd;
         if (options.dir) {
