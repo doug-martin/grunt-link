@@ -1,7 +1,7 @@
 {
   "name": "grunt-link",
   "description": "Grunt task to handle the linking of local dependencies",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "homepage": "https://github.com/doug-martin/grunt-link.git",
   "author": {
     "name": "Doug Martin",
@@ -17,6 +17,10 @@
       "name": "Russell Madsen",
       "email": "russell@madsendev.com",
       "url": "http://madsendev.com"
+    },
+    {
+      "name": "Miko Nieminen",
+      "email": "miko.nieminen@iki.fi"
     }
   ],
   "repository": {
@@ -26,12 +30,7 @@
   "bugs": {
     "url": ""
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://doug-martin.github.com/grunt-link/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "(MIT)",
   "main": "Gruntfile.js",
   "engines": {
     "node": "*"
@@ -40,12 +39,12 @@
     "test": "grunt test"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0"
+    "grunt": "~1.0.1"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-contrib-nodeunit": "~0.1.2",
-    "grunt-contrib-jshint": "~0.2.0"
+    "grunt": "~1.0.1",
+    "grunt-contrib-jshint": "~1.1.0",
+    "grunt-contrib-nodeunit": "~1.0.0"
   },
   "keywords": [
     "gruntplugin",
@@ -53,8 +52,8 @@
     "link"
   ],
   "dependencies": {
-    "comb": "~0.4.0",
-    "rimraf": "~2.1.1",
-    "npm": "^1.4.21"
+    "comb": "~1.0.1",
+    "rimraf": "~2.5.4",
+    "npm": "~3.10.8"
   }
 }
